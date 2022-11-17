@@ -77,15 +77,32 @@ function questionClick(event) {
     }
   
     // check if user guessed wrong
-    
+    if (buttonEl.value !== questions[currentQuestionIndex].answer) {
+ 
+      
+      // play "wrong" sound effect
+      sfxWrong.play();
+  
+      answerResult.textContent = 'Wrong!';
+    } else {
+      // play "right" sound effect
+      sfxRight.play();
+  
+      answerResult.textContent = 'Correct!';
+    }
+  
+   
   
     // move to next question
     currentQuestionIndex++;
   
-    
+    // check if we've run out of questions
+    if (time <= 0 || currentQuestionIndex === questions.length) {
+      quizEnd();
+    } else {
       generateQuizQuestion();
     }
-  
+  }
 
   currentQuestionIndex++;
 
@@ -100,6 +117,7 @@ var timerInterval = setInterval(function() {
 
     }, 1000);
 }
+
 
 
 
