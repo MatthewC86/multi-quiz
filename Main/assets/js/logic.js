@@ -128,7 +128,9 @@ function quizEnd() {
   // hides questions after last question
   questionsEl.setAttribute('class', 'hide');
 
-  
+  // display the end screen 
+  var endScreenEl = document.getElementById('end-screen');
+  endScreenEl.removeAttribute('class');
 
  
 }
