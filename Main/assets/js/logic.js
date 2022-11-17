@@ -16,6 +16,7 @@ var currentQuestionIndex = 0;
 var quizTimer = document.getElementById("time");
 var secondsLeft = 60;
 var answerResult = document.getElementById('feedback');
+var submitBtn = document.getElementById('submit');
 
 var time = questions.length * 15;
 var timerId;
