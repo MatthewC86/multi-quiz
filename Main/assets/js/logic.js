@@ -15,6 +15,7 @@ var startScreenEl = document.getElementById('start-screen');
 var currentQuestionIndex = 0;
 var quizTimer = document.getElementById("time");
 var secondsLeft = 60;
+var answerResult = document.getElementById('feedback');
 
 var time = questions.length * 15;
 var timerId;
@@ -24,8 +25,8 @@ var timerId;
 
 
 // sounds
-var sfxCorrect = new Audio('assets/sfx/correct.wav');
-var sfxIncorrect = new Audio('assets/sfx/incorrect.wav');
+var sfxRight = new Audio('assets/sfx/correct.wav');
+var sfxWrong = new Audio('assets/sfx/incorrect.wav');
 
 
 
@@ -69,7 +70,24 @@ function generateQuizQuestion(){
 // creating button click event
 function questionClick(event) {
   var buttonEl = event.target;
-}
+
+    // if the button
+    if (!buttonEl.matches('.choice')) {
+      return;
+    }
+  
+    // check if user guessed wrong
+    
+  
+    // move to next question
+    currentQuestionIndex++;
+  
+    
+      generateQuizQuestion();
+    }
+  
+
+  currentQuestionIndex++;
 
   //Timer. 
 function setTime() {
@@ -87,6 +105,9 @@ var timerInterval = setInterval(function() {
 
 
 
+
+
 // This button starts the quiz!
 startQuizButton.onclick = startQuiz;
 
+choicesEl.onclick = questionClick;
