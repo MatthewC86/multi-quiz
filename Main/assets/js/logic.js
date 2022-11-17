@@ -71,7 +71,7 @@ function generateQuizQuestion(){
 function questionClick(event) {
   var buttonEl = event.target;
 
-    // if the button
+    // if the clicked element is not a choice button, do nothing.
     if (!buttonEl.matches('.choice')) {
       return;
     }
@@ -79,7 +79,7 @@ function questionClick(event) {
     // check if user guessed wrong
     if (buttonEl.value !== questions[currentQuestionIndex].answer) {
  
-      
+  
       // play "wrong" sound effect
       sfxWrong.play();
   
@@ -91,7 +91,11 @@ function questionClick(event) {
       answerResult.textContent = 'Correct!';
     }
   
-   
+    // flash right/wrong feedback on page for half a second
+    answerResult.setAttribute('class', 'feedback');
+    setTimeout(function () {
+      answerResult.setAttribute('class', 'feedback hide');
+    }, 1000);
   
     // move to next question
     currentQuestionIndex++;
@@ -118,14 +122,21 @@ var timerInterval = setInterval(function() {
     }, 1000);
 }
 
+function quizEnd() {
+  // timer stop and display 
+  clearInterval(timerId);
+  // hides questions after last question
+  questionsEl.setAttribute('class', 'hide');
 
+  
 
-
+ 
+}
 
 
 
 
 // This button starts the quiz!
 startQuizButton.onclick = startQuiz;
-
+// register button selection
 choicesEl.onclick = questionClick;
