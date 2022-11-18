@@ -20,6 +20,7 @@ var submitBtn = document.getElementById('submit');
 
 var time = questions.length * 15;
 var timerId;
+let score = 0;
 
 
 
@@ -139,7 +140,10 @@ function quizEnd() {
 
 
 
+
 // This button starts the quiz!
 startQuizButton.onclick = startQuiz;
 // register button selection
 choicesEl.onclick = questionClick;
+
+submitBtn.onclick = saveHighscore;
